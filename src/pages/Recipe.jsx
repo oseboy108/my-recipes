@@ -9,17 +9,19 @@ function Recipe() {
   const [details, setDetails] = useState({})
   const [activeTab, setActiveTab] = useState("instructions")
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDetails = async () => {
-    const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`)
+    const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+    )
     const detailData = await data.json()
     setDetails(detailData)
-    console.log(detailData)
+   
   }
 
   useEffect(() => {
     fetchDetails(params.name) 
-    // console.log(params.name)
-  }, [params.name])
+
+  }, [fetchDetails, params.name])
 
 
   return (
