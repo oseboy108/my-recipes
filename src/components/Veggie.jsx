@@ -5,6 +5,7 @@ import styled from "styled-components"
 import {Splide, SplideSlide} from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css'
 import restaurant from '../images/restaurant.png'
+import {Link} from 'react-router-dom'
 
 
 function Veggie() {
@@ -12,6 +13,7 @@ function Veggie() {
   const [veggie, setVeggie] = useState([]);
 
   useEffect(() =>{
+
   getVeggie()
   },[])
 
@@ -45,7 +47,7 @@ function Veggie() {
     <div>
       <div className="container-fluid">
           <Wrapper>
-          <h3><img src={restaurant} className="img1" alt=""/>Our Vegetarian Picks </h3>
+          <h3><img src={restaurant} className="img1" alt=""/>Vegetarian Picks </h3>
 
            <Splide options={{
              perPage: 3,
@@ -59,10 +61,12 @@ function Veggie() {
          return(
            <SplideSlide key={recipe.id}>
            <Card>
-              <p>{recipe.title}</p>
+           <Link to={'/recipe/' + recipe.id}>
+           <p>{recipe.title}</p>
               <img src={recipe.image} alt={recipe.title} />
               <Gradient />
-            </Card>
+           </Link>
+              </Card>
            </SplideSlide>
             
          );
